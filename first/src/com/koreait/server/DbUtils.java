@@ -22,9 +22,10 @@ public class DbUtils {
     }
 
     public Connection getCon() {
-        final String URL = "jdbc:mysql://mypj.iptime.org:3306/test01";
-        final String USER_NAME = "test01";
-        final String USER_PW = "test01";
+//        final String URL = "jdbc:mysql://mypj.iptime.org:3306/test01";
+        final String URL = "jdbc:mysql://localhost:3308/test";
+        final String USER_NAME = "root";
+        final String USER_PW = "koreait";
         Connection con = null;
 
 
