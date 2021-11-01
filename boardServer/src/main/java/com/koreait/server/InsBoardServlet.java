@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/inss")
+@WebServlet("/ins")
 public class InsBoardServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String json = Utils.getJson(req);
+        System.out.println("json : " +json);
+
         Gson gson = new Gson();
         BoardVO vo = gson.fromJson(json, BoardVO.class);
         System.out.println("title : " +vo.getTitle());
