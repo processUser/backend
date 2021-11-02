@@ -14,8 +14,8 @@ import java.io.PrintWriter;
 public class SelBoardDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int iboard = Integer.parseInt(req.getParameter("iboard")); // 보내진 키값을 받는다.
         BoardVO vo = new BoardVO();
-        int iboard = Integer.parseInt(req.getParameter("iboard"));
         vo.setIboard(iboard);
 
         Gson gson = new Gson();
