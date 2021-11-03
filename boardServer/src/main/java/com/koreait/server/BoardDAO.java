@@ -36,7 +36,8 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs =null;
-        String sql = "SELECT iboard, title, writer, rdt FROM t_board";
+        String sql = "SELECT iboard, title, writer, rdt FROM t_board order by iboard DESC"; //내림차순
+//        String sql = "SELECT iboard, title, writer, rdt FROM t_board order by iboard asc"; //내림차순
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
@@ -120,7 +121,7 @@ public class BoardDAO {
     public static int delBoard(BoardVO param) {
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = "DELERT FROM t_borad WHERE iboard = ?";
+        String sql = "DELETE FROM t_board WHERE iboard = ?";
 
         try{
             con = DbUtils.getCon();

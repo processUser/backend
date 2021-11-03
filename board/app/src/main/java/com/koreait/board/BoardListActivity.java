@@ -2,7 +2,6 @@ package com.koreait.board;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -30,13 +29,11 @@ public class BoardListActivity extends AppCompatActivity {
         rvList = findViewById(R.id.rvList);
         adapter = new BoardListAdapter();
         rvList.setAdapter(adapter);
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
         getBoardList();
-        //역순으로 출력 되게 하는 것 ---->
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setReverseLayout(true);
-        mLayoutManager.setStackFromEnd(true);
-        rvList.setLayoutManager(mLayoutManager);
-        //<----
     }
     //글쓰기 Activity로 이동
     public void clkWrite(View v){
@@ -46,7 +43,7 @@ public class BoardListActivity extends AppCompatActivity {
 
     private void getBoardList(){
         Retrofit retrofit = RetroFitObj.getInstance();
-        BoradService service = retrofit.create(BoradService.class);
+        BoardService service = retrofit.create(BoardService.class);
 
         Call<List<BoardVO>> call = service.selBoardList();
         call.enqueue(new Callback<List<BoardVO>>() {
@@ -86,7 +83,16 @@ class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.MyViewHolde
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         BoardVO vo = list.get(position);
         holder.setItem(vo);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("myLog","iboard : "+vo.getIboard());
 
+                Intent intent = new Intent(view.getContext(), BoardDetailActivity.class);
+                intent.putExtra("iboard", vo.getIboard());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

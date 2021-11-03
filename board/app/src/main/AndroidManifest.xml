@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.koreait.board">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Board"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".BoardModActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BoardDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".BoardWriteActivity"
             android:exported="false" />
@@ -23,7 +31,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

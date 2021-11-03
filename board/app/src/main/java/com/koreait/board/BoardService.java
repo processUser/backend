@@ -1,0 +1,26 @@
+package com.koreait.board;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
+public interface BoardService {
+    @GET("selList")
+    Call<List<BoardVO>> selBoardList();
+
+    @POST("ins")
+    Call<Void> insBoard(@Body BoardVO param); // post 에서는 @Body
+
+    @GET("sel")
+    Call<BoardVO> selBoardDetail(@Query("iboard") int iboard); // get 에서는 @Query
+
+    @GET("del")
+    Call<Void> delBoard(@Query("iboard") int iboard);
+
+    @POST("upd")
+    Call<Void> updBoard(@Body BoardVO param);
+}

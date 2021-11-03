@@ -23,6 +23,6 @@ public class UpdBoardServlet extends HttpServlet {
         BoardVO param = gson.fromJson(json, BoardVO.class);
         int result = BoardDAO.updBoard(param);
         System.out.println("result : " +result);
-
+        BoardDAO.updBoard(param);
     }
 }
