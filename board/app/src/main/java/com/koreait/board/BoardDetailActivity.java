@@ -1,8 +1,5 @@
 package com.koreait.board;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
 
 public class BoardDetailActivity extends AppCompatActivity {
     private TextView tvTitle;
@@ -36,7 +37,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         Retrofit rf = RetroFitObj.getInstance();
         service = rf.create(BoardService.class);
 
-        // TODO iboard값 전달 받기
+        // iboard값 전달 받기
         Intent intent = getIntent();
         iboard = intent.getIntExtra("iboard", 0);
 

@@ -19,7 +19,7 @@ public class SelBoardDetailServlet extends HttpServlet {
         vo.setIboard(iboard);
 
         Gson gson = new Gson();
-        String json = gson.toJson(BoardDAO.selBoard(vo));
+        String json = gson.toJson(BoardDAO.selBoard(vo)); //toJson - Json 객체를 문자열로 바꾸고싶을때.
 
         res.setContentType("text/plain;charset=UTF-8");
         res.setCharacterEncoding("UTF-8");

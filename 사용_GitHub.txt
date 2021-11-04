@@ -1,0 +1,32 @@
+git bash 이용하면됨!
+
+사용할 GitHub Repositories 생성
+-> 원하는 위치(폴더)로 이동
+-> git bash 실행
+-> git clone [Repositories Url]
+-> git config user.name        // name 확인
+-> git config user.email        // email 확인
+-> git config user.name [GitHub name]      //지역설정 - 해당 폴더에서만 사용됨.
+-> git config user.email [GitHub email]      //지역설정 -  해당 폴더에서만 사용됨.
+-> git add .
+-> git commit -m "[commit 할 때 내용]"
+-> git push
+-> git push origin main // user 설정안해도되는듯?
+
+user 설정안해도되는듯?
+-> git bash 실행
+-> git init
+-> git branch -M main
+-> git remote add origin https://github.com/processUser/test.git
+-> git add .
+-> git commit -m "[commit 할 때 내용]"
+-> git push origin main
+
+한번 설정한 이후 
+-> git bash 실행
+-> git pull
+-> git add .
+-> git commit -m "[commit 할 때 내용]"
+-> git push
+
+// 지역설정 하는 이유 - 전역 설정을 하더라도 사용자 변경 되지 않는다.

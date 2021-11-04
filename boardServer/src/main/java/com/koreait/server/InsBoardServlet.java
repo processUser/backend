@@ -22,7 +22,8 @@ public class InsBoardServlet extends HttpServlet {
         System.out.println("json : " +json);
 
         Gson gson = new Gson();
-        BoardVO vo = gson.fromJson(json, BoardVO.class);
+        BoardVO vo = gson.fromJson(json, BoardVO.class); //fromJson - toJson이랑 반대되는 것.
+
         System.out.println("title : " +vo.getTitle());
         System.out.println("ctnt : " +vo.getCtnt());
         System.out.println("writer : " +vo.getWriter());
