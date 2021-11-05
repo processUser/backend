@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BoardWriteActivity">
+
+  <Button
+      android:id="@+id/btWrite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="80dp"
+      android:layout_marginBottom="70dp"
+      android:text="@string/write"
+      android:onClick="clkSave"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/btBack"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="80dp"
+      android:text="@string/cancel"
+      android:onClick="clkCancel"
+      app:layout_constraintBottom_toBottomOf="@+id/btWrite"
+      app:layout_constraintStart_toEndOf="@+id/btWrite" />
+
+  <EditText
+      android:id="@+id/etWriter"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:hint="@string/writer"
+      app:layout_constraintStart_toStartOf="@+id/etTitle"
+      app:layout_constraintTop_toBottomOf="@+id/etCtnt" />
+
+  <EditText
+      android:id="@+id/etTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="30dp"
+      android:layout_marginTop="40dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:hint="@string/title"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/etCtnt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:hint="@string/ctnt"
+      app:layout_constraintStart_toStartOf="@+id/etTitle"
+      app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

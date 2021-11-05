@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,9 +33,17 @@ public class BoardListActivity extends AppCompatActivity {
         adapter = new BoardListAdapter();
         rvList.setAdapter(adapter);
 
+
+    }
+    public void onStart() {  // 새로고침 같은것....
+        super.onStart();
         getBoardList();
     }
 
+    public void clkWrite(View v) {
+        Intent intent = new Intent(this, BoardWriteActivity.class);
+        startActivity(intent);
+    }
     private void getBoardList(){
         BoardService service = Network.getService();
 
@@ -82,12 +91,15 @@ class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.MyViewHolde
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         BoardVO vo = list.get(position);
         holder.setItem(vo);
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+//        ------> 해당 위치 클릭시 iboard 값 을 이용해 다른 Activity 연결.
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
+                intent.putExtra("iboard", vo.getIboard());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

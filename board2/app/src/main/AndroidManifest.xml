@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.koreait.board2">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-<!--  인터넷 사용가능한 권한  -->
-<!--android:usesCleartextTraffic="true" 는 http 통신 가능하게 하는 코드-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Board2"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".BoardDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BoardWriteActivity"
+            android:exported="false" />
         <activity
             android:name=".BoardListActivity"
             android:exported="true">
@@ -23,5 +26,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
