@@ -89,4 +89,43 @@ public class BoardDAO {
         }
         return null;
     }
+    public static int delBoard(int iboard){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "delete from t_board where iboard = ?;";
+
+        try{
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, iboard);
+            return ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con,ps);
+        }
+        return 0;
+    }
+    public static int updBoard(BoardVO vo){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "update t_board set title = ?, ctnt = ?, writer = ? where iboard = ?;";
+
+        try{
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, vo.getTitle());
+            ps.setString(2, vo.getCtnt());
+            ps.setString(3, vo.getWriter());
+            ps.setInt(4, vo.getIboard());
+
+            return ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con,ps);
+        }
+
+        return 0;
+    }
 }

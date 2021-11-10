@@ -1,8 +1,8 @@
-package com.koreait.board;
+package board;
 
 import java.sql.*;
 
-public class DbUtils {
+public class Dbutils {
     public static Connection getCon() throws SQLException, ClassNotFoundException {
         final String URL = "jdbc:mysql://mypj.iptime.org:3306/test01";
         final String DBNAME = "test01";

@@ -9,13 +9,17 @@
     <title><%= vo.getTitle()%></title>
 </head>
 <body>
-    <div>제목 <input type="text" name="title" value="<%= vo.getTitle()%>"> </div>
-    <div>작성자 <input type="text" name="writer" value="<%= vo.getWriter()%>"> </div>
-    <div>내용 <textarea name="ctnt"  cols="30" rows="10" ><%= vo.getCtnt()%></textarea> </div>
-    <div>작성일시 <input type="text" name="rdt" value="<%= vo.getRdt()%>"> </div>
-<%--    <div>제목 <%= vo.getTitle()%></div>--%>
-<%--    <div>작성자 <%= vo.getWriter()%> </div>--%>
-<%--    <div>내용 <%= vo.getCtnt()%></div>--%>
-<%--    <div>작성일시 <%= vo.getRdt()%> </div>--%>
+    <div>
+        <a href="/del?iboard=<%= vo.getIboard()%>"><input type="button" value="삭제"></a>
+        <a href="/mod?iboard=<%= vo.getIboard()%>"><input type="button" value="수정"></a>
+    </div>
+<%--    <div>제목 <input type="text" name="title" value="<%= vo.getTitle()%>"> </div>--%>
+<%--    <div>작성자 <input type="text" name="writer" value="<%= vo.getWriter()%>"> </div>--%>
+<%--    <div>내용 <textarea name="ctnt"  cols="30" rows="10" ><%= vo.getCtnt()%></textarea> </div>--%>
+<%--    <div>작성일시 <input type="text" name="rdt" value="<%= vo.getRdt()%>"> </div>--%>
+    <div>제목 <%= vo.getTitle()%></div>
+    <div>작성자 <%= vo.getWriter()%> </div>
+    <div>내용 <%= vo.getCtnt()%></div>
+    <div>작성일시 <%= vo.getRdt()%> </div>
 </body>
 </html>

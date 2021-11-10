@@ -8,36 +8,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/write")
-public class BoardWriteServlet extends HttpServlet {
+@WebServlet("/mod")
+public class BoardModServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String path = "WEB-INF/jsp/write.jsp";
+        String iboard = req.getParameter("iboard");
+        BoardVO vo = new BoardVO();
+        vo.setIboard(Integer.parseInt(iboard));
+
+        BoardVO voData = BoardDAO.selBoardDetail(vo);
+        req.setAttribute("detailData", voData);
+
+        String path = "/WEB-INF/jsp/mod.jsp";
         RequestDispatcher rd = req.getRequestDispatcher(path);
         rd.forward(req,res);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String striboard = req.getParameter("iboard");
+        int iboard = Integer.parseInt(striboard);
         String title = req.getParameter("title");
         String ctnt = req.getParameter("ctnt");
         String writer = req.getParameter("writer");
 
-        System.out.println("title : "+title);
-        System.out.println("ctnt : "+ctnt);
-        System.out.println("writer : "+writer);
-        BoardVO param = new BoardVO();
-        param.setTitle(title);
-        param.setCtnt(ctnt);
-        param.setWriter(writer);
+        BoardVO vo = new BoardVO();
+        vo.setIboard(iboard);
+        vo.setTitle(title);
+        vo.setCtnt(ctnt);
+        vo.setWriter(writer);
 
-        int result = BoardDAO.insBoard(param);
-        switch (result){
+        int i = BoardDAO.updBoard(vo);
+        switch (i) {
             case 1:
-                res.sendRedirect("/list"); // 주소이동
-                break;
-            default:
-                res.sendRedirect("/write"); // 주소이동
+                res.sendRedirect("/detail?iboard="+iboard);
                 break;
         }
     }
