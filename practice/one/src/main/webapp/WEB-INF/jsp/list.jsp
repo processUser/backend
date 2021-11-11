@@ -33,11 +33,21 @@
             <tr>
                 <td><%= vo.getIboard() %></td>
                 <td><a href="/detail?iboard=<%= vo.getIboard() %>"><%= vo.getTitle() %></a></td>
-                <td><%= vo.getWrite() %></td>
+                <td><%= vo.getWriter() %></td>
                 <td><%= vo.getRdt() %></td>
             </tr>
             <% } %>
         </table>
+        <a href="/write"><input type="button" value="글쓰기"></a>
+        <form action="/list" method="get">
+            <select name="choice" >
+                <option value="1" selected>제목+내용</option>
+                <option value="2" >제목</option>
+                <option value="3" >작성자</option>
+            </select>
+            <input type="text" name="search">
+            <input type="submit" value="검색">
+        </form>
     </div>
 </body>
 </html>

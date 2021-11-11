@@ -4,7 +4,7 @@ public class BoardVO {
     private int iboard;
     private String title;
     private String ctnt;
-    private String write;
+    private String writer;
     private String rdt;
 
     public int getIboard() {
@@ -31,12 +31,12 @@ public class BoardVO {
         this.ctnt = ctnt;
     }
 
-    public String getWrite() {
-        return write;
+    public String getWriter() {
+        return writer;
     }
 
-    public void setWrite(String write) {
-        this.write = write;
+    public void setWriter(String write) {
+        this.writer = write;
     }
 
     public String getRdt() {

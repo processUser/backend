@@ -15,14 +15,15 @@
     <div>
         <div><%= vo.getTitle() %></div>
         <div>
-            <div><%= vo.getWrite() %></div>
+            <div><%= vo.getWriter() %></div>
             <div><%= vo.getRdt() %></div>
         </div>
         <div><%= vo.getCtnt() %></div>
     </div>
     <div>
         <a href="/list"><input type="button" value="목차"></a>
-        <a href=""><input type="button" value="수정"></a>
+        <a href="/upd?iboard=<%= vo.getIboard() %>"><input type="button" value="수정"></a>
+        <a href="/del?iboard=<%= vo.getIboard() %>"><input type="button" value="삭제"></a>
     </div>
 
 </body>

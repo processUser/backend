@@ -13,7 +13,16 @@ import java.util.List;
 public class ListBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        List<BoardVO> list = BoardDAO.selBoardList(); // list 객체 주소값이 리턴된다.
+        String choice = req.getParameter("choice");
+        String search = req.getParameter("search");
+
+        List<BoardVO> list;
+
+        if(choice==null&&search==null||search.equals("")) {
+            list = BoardDAO.selBoardList(); // list 객체 주소값이 리턴된다.
+        } else {
+            list = BoardDAO.searchBoard(choice, search); // list 객체 주소값이 리턴된다.
+        }
         req.setAttribute("listData", list);
 
         // WEB-INF > .jsp 접근 하기 ==>
@@ -25,6 +34,8 @@ public class ListBoardServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String choice = req.getParameter("choice");
+        String search = req.getParameter("search");
 
     }
 }
