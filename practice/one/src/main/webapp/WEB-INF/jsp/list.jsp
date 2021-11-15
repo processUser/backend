@@ -9,45 +9,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-    <style>
-        table, th, td{
-            border-collapse: collapse;
-            border: 1px solid #000;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
-    <div>
-        <div>게시판</div>
-    </div>
-    <div>
-        <table>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>글쓴이</th>
-                <th>작성일시</th>
-            </tr>
-            <% for (BoardVO vo : list) { %>
-            <tr>
-                <td><%= vo.getIboard() %></td>
-                <td><a href="/detail?iboard=<%= vo.getIboard() %>"><%= vo.getTitle() %></a></td>
-                <td><%= vo.getWriter() %></td>
-                <td><%= vo.getRdt() %></td>
-            </tr>
-            <% } %>
-        </table>
-        <a href="/write"><input type="button" value="글쓰기"></a>
-        <form action="/list" method="get">
-            <select name="choice" >
-                <option value="1" selected>제목+내용</option>
-                <option value="2" >제목</option>
-                <option value="3" >작성자</option>
-            </select>
-            <input type="text" name="search">
-            <input type="submit" value="검색">
-        </form>
+    <div id="content">
+        <div id="header">
+            <h1>게시판</h1>
+        </div>
+
+        <div id="section">
+            <table id="tableBoard">
+                <tr class="thWarp">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>작성일시</th>
+                </tr>
+                <% for (BoardVO vo : list) { %>
+                <tr class="tdWarp">
+                    <td><%= vo.getIboard() %></td>
+                    <td><a href="/detail?iboard=<%= vo.getIboard() %>"><%= vo.getTitle() %></a></td>
+                    <td><%= vo.getWriter() %></td>
+                    <td><%= vo.getRdt() %></td>
+                </tr>
+                <% } %>
+            </table>
+            <div id="article">
+                <a href="/write"><input type="button" value="글쓰기"></a>
+                <form action="/list" method="get">
+                    <select name="choice" >
+                        <option value="1" selected>제목+내용</option>
+                        <option value="2" >제목</option>
+                        <option value="3" >작성자</option>
+                    </select>
+                    <input type="text" name="search">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

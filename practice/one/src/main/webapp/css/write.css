@@ -1,0 +1,46 @@
+@charset "utf-8";
+#writeSection{
+    width: 850px;
+    margin-top: 25px;
+}
+#writeSection > form{
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"]{
+    flex: 1;
+    padding: 8px 15px ;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    font-size: 25px;
+}
+textarea{
+    padding: 10px; margin-top: 20px;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    font-size: 20px;
+}
+input[type="text"]:focus, textarea:focus{
+    background-color: #fff;
+    color: #000;
+}
+.writeTitle{
+    display: flex;
+    flex-direction: row;
+}
+.writeButton{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+input[type="submit"], input[type="button"]{
+    width: 100px; height: 45px;
+    border: 0;
+    font-size: 25px;
+}
+input[type="button"]:hover,input[type="submit"]:hover{
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+}

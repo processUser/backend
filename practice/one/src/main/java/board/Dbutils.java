@@ -4,12 +4,12 @@ import java.sql.*;
 
 public class Dbutils {
     public static Connection getCon() throws SQLException, ClassNotFoundException {
-//        final String URL = "jdbc:mysql://mypj.iptime.org:3306/test01";
-//        final String DBNAME = "test01";
-//        final String DBPASSWORD = "test01";
-        final String URL = "jdbc:mysql://localhost:3308/test";
-        final String DBNAME = "root";
-        final String DBPASSWORD = "koreait";
+        final String URL = "jdbc:mysql://mypj.iptime.org:3306/test01";
+        final String DBNAME = "test01";
+        final String DBPASSWORD = "test01";
+//        final String URL = "jdbc:mysql://localhost:3308/test";
+//        final String DBNAME = "root";
+//        final String DBPASSWORD = "koreait";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(URL, DBNAME, DBPASSWORD);

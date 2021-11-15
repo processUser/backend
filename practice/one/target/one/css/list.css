@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+#section{
+}
+#tableBoard{
+    margin-top: 35px;
+    width: 850px;
+    border-collapse: collapse;
+    /*border-top: 2px solid #fff;*/
+    border-bottom: 3px solid #fff;
+    font-size: 22px;
+
+}
+.thWarp > th {
+    height: 40px;
+    border-bottom: 3px solid #fff;
+
+}
+.thWarp > th:nth-of-type(2),.thWarp > th:nth-of-type(3){
+    border-left: 1px dotted #fff;
+    border-right: 1px dotted #fff;
+}
+.tdWarp{
+
+}
+.tdWarp > td {
+    height: 40px;
+    border: 1px dotted #fff;
+    border-left: 0;
+    border-right: 0;
+}
+.tdWarp > td:nth-of-type(1){
+    width: 10%;
+    text-align: center;
+}
+.tdWarp > td:nth-of-type(2){
+    width: 40%;
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tdWarp > td:nth-of-type(2):hover{
+    font-weight: bold;
+    font-size: 25px;
+}
+/*말줄임 참고 - https://deeplify.dev/front-end/markup/text-ellipsis*/
+.tdWarp > td:nth-of-type(3){
+    width: 20%;
+    text-align: center;
+}
+.tdWarp > td:nth-of-type(4){
+    width: 30%;
+    text-align: center;
+}
+#article{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+input[type="text"]{
+    width: 250px;
+    padding: 0 10px ;
+    font-size: 20px;
+    border: 0;
+    border-bottom: 3px solid #fff;
+}
+
+input[type="button"], input[type="submit"] {
+    width: 100px; height: 45px;
+    border: 0;
+    font-size: 20px;
+}
+input[type="button"]:hover,input[type="submit"]:hover{
+    border-radius: 20px;
+    background-color: #fff;
+    color: #000;
+}
+select{
+    width: 120px;
+    font-size: 20px;
+    border: 0;
+}
+select:hover{
+    border-bottom: 3px solid #fff;
+}
