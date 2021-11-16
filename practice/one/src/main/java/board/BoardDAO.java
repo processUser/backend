@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BoardDAO {
+    // 전체 조회
     public static List<BoardVO> selBoardList(){
         List<BoardVO> list= new ArrayList<>();
 
@@ -39,6 +40,8 @@ public class BoardDAO {
         }
         return list;
     }
+
+    // 개별 조회
     public static BoardVO selBoard(BoardVO param) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -69,6 +72,59 @@ public class BoardDAO {
         }
         return null;
     }
+
+    // 이전글 - 최신글 가져오기
+    public static int selPrevBoard(BoardVO param){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select iboard from t_board where iboard > ? order by iboard limit 1";
+
+        try {
+            con = Dbutils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            rs = ps.executeQuery();
+
+            if(rs.next()) {
+                int iboard = rs.getInt("iboard");
+                return iboard;
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            Dbutils.close(con,ps,rs);
+        }
+        return 0;
+    }
+
+    // 다음글 - 이전 작성글 가져오기
+    public static int selNextBoard(BoardVO param){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select iboard from t_board where iboard < ? order by iboard desc limit 1";
+        try {
+            con = Dbutils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            rs = ps.executeQuery();
+
+            if(rs.next()) {
+                int iboard = rs.getInt("iboard");
+                return iboard;
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            Dbutils.close(con,ps,rs);
+        }
+        return 0;
+    }
+
+    // 검색기능
     public static List<BoardVO> searchBoard(String choice,String search){
         List<BoardVO> list = new ArrayList<>();
 
@@ -132,6 +188,8 @@ public class BoardDAO {
 
         return list;
     }
+
+    // 수정(업데이트)
     public static int updBoard(BoardVO param){
         Connection con = null;
         PreparedStatement ps = null;
@@ -154,6 +212,8 @@ public class BoardDAO {
         }
         return 0;
     }
+
+    //삭제
     public static int deleteBoard(String striboard){
         Connection con = null;
         PreparedStatement ps = null;
@@ -171,6 +231,8 @@ public class BoardDAO {
 
         return 0;
     }
+
+    // 추가
     public static int insertBoard(BoardVO param){
         Connection con = null;
         PreparedStatement ps = null;
