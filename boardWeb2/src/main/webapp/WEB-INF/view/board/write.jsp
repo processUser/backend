@@ -21,10 +21,10 @@
 <%--            해당방법은 보안상 위험하다.--%>
 <%--            <input type="hidden" name="iuser" value="<%= loginUser.getIuser()%>">--%>
             <div>
-                <input type="text" name="title" placeholder="title">
+                <input type="text" name="title" placeholder="title" value="${requestScope.writeData.title}">
             </div>
             <div>
-                <textarea name="ctnt" cols="30" rows="10"></textarea>
+                <textarea name="ctnt" cols="30" rows="10">${requestScope.writeData.ctnt}</textarea>
             </div>
             <div>
                 <input type="submit" value="등록">

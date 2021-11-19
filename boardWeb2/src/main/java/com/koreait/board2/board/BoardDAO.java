@@ -1,6 +1,7 @@
 package com.koreait.board2.board;
 
 import com.koreait.board2.DbUtils;
+import com.koreait.board2.model.BoardParamVO;
 import com.koreait.board2.model.BoardVO;
 import com.koreait.board2.model.UserVO;
 
@@ -34,17 +35,19 @@ public class BoardDAO {
     }
 
     // Board list 전체
-    public static List<BoardVO> selList() {
+    public static List<BoardVO> selList(BoardParamVO paramVO) {
         List<BoardVO> list = new ArrayList<>();
 
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "select A.iboard, A.title, B.nm as writerNm, A.rdt from t_board A " +
-                "inner join t_user B on A.writer = B.iuser order by iboard desc;";
+                "inner join t_user B on A.writer = B.iuser order by iboard desc limit ?, ?;";
         try{
             con=DbUtils.getCon();
             ps = con.prepareStatement(sql);
+            ps.setInt(1, paramVO.getsIdx());
+            ps.setInt(2, paramVO.getRecordCnt());
             rs = ps.executeQuery();
 
             while (rs.next()){
@@ -69,7 +72,7 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select A.title, A.ctnt, A.writer, B.nm as writerNm, A.rdt from t_board A " +
+        String sql = "select A.title, A.ctnt, A.writer, B.nm as writerNm, A.mdt from t_board A " +
                 "inner join t_user B on A.writer = B.iuser where iboard = ?;";
         try{
             con = DbUtils.getCon();
@@ -83,7 +86,7 @@ public class BoardDAO {
                 vo.setCtnt(rs.getString("ctnt"));
                 vo.setWriter(rs.getInt("writer"));
                 vo.setWriterNm(rs.getString("writerNm"));
-                vo.setRdt(rs.getString("rdt"));
+                vo.setMdt(rs.getString("mdt"));
                 return vo;
             }
         }catch (Exception e){
@@ -113,4 +116,51 @@ public class BoardDAO {
         }
         return 0;
     }
+
+    public static int updBoard(BoardVO param){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "update t_board set title = ?, ctnt = ?, mdt = now() where iboard = ? and writer = ?;";
+
+        try{
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, param.getTitle());
+            ps.setString(2, param.getCtnt());
+            ps.setInt(3, param.getIboard());
+            ps.setInt(4, param.getWriter());
+            return ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
+
+    // 페이징 처리할때 사용하는 내용들
+    public static int selMaxPage(BoardParamVO param){
+        Connection con= null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT ceil(COUNT(*) / ?) FROM t_board;";
+        try{
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getRecordCnt());
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+            return ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
+
+
+    // 페이징 처리 작업 끝
 }

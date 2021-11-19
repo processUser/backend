@@ -14,7 +14,7 @@
 </head>
 <body>
 <%if(loginUser != null && vo.getWriter() == loginUser.getIuser()){%>
-    <a href=""><input type="button" value="수정"></a>
+    <a href="/board/mod?pk=${requestScope.item.iboard}"><input type="button" value="수정"></a>
     <a href="/board/del?iboard=${requestScope.item.iboard}"><input type="button" value="삭제"></a>
 <%}%>
 <div>${requestScope.err}</div>
@@ -22,7 +22,7 @@
 <div>${requestScope.item.iboard}</div>
 <div>${requestScope.item.title}</div>
 <div>${requestScope.item.writerNm}</div>
-<div>${requestScope.item.rdt}</div>
+<div>${requestScope.item.mdt}</div>
 <div>${requestScope.item.ctnt}</div>
 </body>
 </html>

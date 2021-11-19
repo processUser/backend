@@ -7,6 +7,7 @@
 <%
     UserVO loginUser = (UserVO)session.getAttribute("loginUser");
     List<BoardVO> list = (List<BoardVO>) request.getAttribute("list");
+    int maxPage = (int) request.getAttribute("maxPage");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -34,17 +35,21 @@
             <th></th>
         </tr>
         <%
-            int i = list.size();
             for(BoardVO vo : list ){
         %>
         <tr>
-            <td><%= i %></td>
+            <td><%= vo.getIboard()%></td>
             <td><a href="/board/detail?pk=<%= vo.getIboard()%>"><%= vo.getTitle()%></a></td>
             <td><%= vo.getWriterNm()%></td>
             <td><%= vo.getRdt()%></td>
         </tr>
-        <% i--; } %>
+        <% } %>
     </table>
+    <div style="margin: 20px; display: flex; justify-content: center;">
+        <%for (int j = 1; j<= maxPage; j++){%>
+        <span>&nbsp;<a href="/board/list?page=<%=j%>"><%=j%></a>&nbsp;</span>
 
+        <%}%>
+    </div>
 </body>
 </html>

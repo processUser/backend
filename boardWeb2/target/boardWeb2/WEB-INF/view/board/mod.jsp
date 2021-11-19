@@ -9,22 +9,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글쓰기</title>
+    <title>mod</title>
 </head>
 <body>
     <div>
-        <h1>글쓰기</h1>
+        <h1>글수정</h1>
         <%if(err != null) {%>
             <div><%= err%></div>
         <%}%>
-        <form action="/board/write" method="post">
-<%--            해당방법은 보안상 위험하다.--%>
-<%--            <input type="hidden" name="iuser" value="<%= loginUser.getIuser()%>">--%>
+        <form action="/board/mod" method="post">
+            <input type="hidden" name="pk" value="${requestScope.boardData.iboard}">
             <div>
-                <input type="text" name="title" placeholder="title" value="${requestScope.writeData.title}">
+                <input type="text" class="reset" name="title" value="${requestScope.boardData.title}" placeholder="title">
             </div>
             <div>
-                <textarea name="ctnt" cols="30" rows="10">${requestScope.writeData.ctnt}</textarea>
+                <textarea name="ctnt" class="reset" cols="30" rows="10">${requestScope.boardData.ctnt}</textarea>
             </div>
             <div>
                 <input type="submit" value="등록">
@@ -32,5 +31,6 @@
             </div>
         </form>
     </div>
+
 </body>
 </html>

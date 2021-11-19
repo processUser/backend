@@ -1,6 +1,7 @@
 package com.koreait.board2.board;
 
 import com.koreait.board2.MyUtils;
+import com.koreait.board2.model.BoardParamVO;
 import com.koreait.board2.model.BoardVO;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,15 @@ import java.util.List;
 public class BoardListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        List<BoardVO> list = BoardDAO.selList();
+        int recordCnt = 10;
+        BoardParamVO param = new BoardParamVO();
+        param.setRecordCnt(recordCnt);
+        req.setAttribute("maxPage", BoardDAO.selMaxPage(param));
+
+        int page = MyUtils.getParameterInt(req, "page", 1);
+        param.setPage(page);
+
+        List<BoardVO> list = BoardDAO.selList(param);
         req.setAttribute("list", list);
         MyUtils.disForward(req, res, "board/list");
     }
