@@ -1,0 +1,35 @@
+@charset "utf-8";
+#content{
+    width: 650px;
+    margin: 0 auto;
+}
+/**/
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#header h1{
+    font-size: 45px;
+    margin:30px 0 65px;
+}
+/**/
+#navWrap{}
+#navWrap ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+#navWrap ul li{}
+#navWrap ul li:nth-of-type(2){
+    margin-left: 30px;
+}
+/**/
+#writeWrap{}
+/**/
+#tableWrap{
+    width: 650px;
+    border: 1px solid #00f;
+    margin: 0 auto;
+}

@@ -1,0 +1,24 @@
+@charset "utf-8";
+/*초기화*/
+* {
+    margin: 0;
+    padding: 0;
+
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+input, select, textarea {
+    border: 0;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+}
+/*공통작업*/
+Html, body, #content {
+    height: 100%;
+}

@@ -1,0 +1,56 @@
+@charset "utf-8";
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f7;
+}
+/**/
+#header {}
+#header h1{
+    font-size: 45px;
+    margin-bottom: 65px;
+}
+/**/
+#err {
+    color: red;
+    font-size: 18px;
+}
+/**/
+#loginForm {
+}
+#loginForm > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#loginForm > form input.text{
+    width: 450px; height: 45px;
+    padding: 10px;
+    font-size: 23px;
+    border: 1px solid #000;
+}
+#loginForm > form input.submit {
+    width: 470px; height: 65px;
+    margin: 35px 0;
+    font-size: 23px;
+}
+/**/
+#infoWrap{}
+#infoWrap ul{
+    display: flex;
+    flex-direction: row;
+}
+#infoWrap ul li:nth-of-type(1){
+}
+#infoWrap ul li:nth-of-type(1):after{
+    content: "";
+    border: 1px solid #464646;
+    margin: 0px 20px;
+}
+#infoWrap ul li:nth-of-type(2){
+}
+#infoWrap ul li a{
+    font-size: 18px;
+}
