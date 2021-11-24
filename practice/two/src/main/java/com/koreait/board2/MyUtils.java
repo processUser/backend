@@ -37,7 +37,12 @@ public class MyUtils {
         }
         return def;
     }
-
+    //특수문자 제거 - 참고 (https://earth-ing.tistory.com/32)
+    public static String StringReplace(String str){
+        String match = "[^\uAC00-\uD7A30-9a-zA-Z]";
+        str = str.replaceAll(match, " ");
+        return str;
+    }
     // 문자열 치환
     public static String encodeHtml(String str){
         String result = str;

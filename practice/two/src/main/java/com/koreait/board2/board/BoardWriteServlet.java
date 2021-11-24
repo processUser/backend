@@ -32,7 +32,7 @@ public class BoardWriteServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserVO userParam = (UserVO) session.getAttribute("loginUser");
 
-        String title = req.getParameter("title");
+        String title = MyUtils.StringReplace(req.getParameter("title"));
         String ctnt = req.getParameter("ctnt");
 
         BoardVO param = new BoardVO();

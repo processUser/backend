@@ -28,8 +28,6 @@ public class BoardDAO {
             while (rs.next()){
                 BoardVO vo = new BoardVO();
                 vo.setIboard(rs.getInt("iboard"));
-//                String str = MyUtils.decodeHtml(rs.getString("title"));
-//                vo.setTitle(str);
                 vo.setTitle(rs.getString("title"));
                 vo.setCtnt(rs.getString("ctnt"));
                 vo.setWriterNm(rs.getString("writerNm"));
@@ -60,8 +58,6 @@ public class BoardDAO {
             if(rs.next()){
                 BoardVO vo = new BoardVO();
                 vo.setIboard(rs.getInt("iboard"));
-//                String str = MyUtils.decodeHtml(rs.getString("title"));
-//                vo.setTitle(str);
                 vo.setTitle(rs.getString("title"));
                 vo.setCtnt(rs.getString("ctnt"));
                 vo.setWriterNm(rs.getString("writerNm"));
@@ -85,8 +81,7 @@ public class BoardDAO {
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
-            String title = MyUtils.encodeHtml(param.getTitle());
-            ps.setString(1, title);
+            ps.setString(1, param.getTitle());
             ps.setString(2, param.getCtnt());
             ps.setInt(3, param.getWriter());
             return ps.executeUpdate();
@@ -105,8 +100,7 @@ public class BoardDAO {
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
-            String title = MyUtils.encodeHtml(param.getTitle());
-            ps.setString(1, title);
+            ps.setString(1, param.getTitle());
             ps.setString(2, param.getCtnt());
             ps.setInt(3, param.getIboard());
             ps.setInt(4, param.getWriter());

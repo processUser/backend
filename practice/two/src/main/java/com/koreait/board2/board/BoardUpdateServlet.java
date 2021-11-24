@@ -39,7 +39,7 @@ public class BoardUpdateServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserVO userParam = (UserVO) session.getAttribute("loginUser");
         int iboard = MyUtils.intParameter(req, "num");
-        String title = req.getParameter("title");
+        String title = MyUtils.StringReplace(req.getParameter("title"));
         String ctnt = req.getParameter("ctnt");
 
         BoardVO boardParam = new BoardVO();
