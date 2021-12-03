@@ -13,8 +13,9 @@
         <div class="header">
             <ul class="topMenu">
                 <li><a href="/board/list">게시판</a></li>
-                <li><a href="/board/regmod">글쓰기</a></li>
             <c:if test="${sessionScope.loginUser != null}">
+                <li><a href="/board/regmod">글쓰기</a></li>
+                <li>${loginUser.nm}(${sessionScope.loginUser.uid})님 환영합니다.</li>
                 <li><a href="/user/logout">로그아웃</a></li>
             </c:if>
             <c:if test="${sessionScope.loginUser == null}">
@@ -28,5 +29,16 @@
             footer
         </div>
     </div>
+    <c:if test="${err != null}">
+        <script>
+            let body = document.querySelector('body');
+            body.onload = function (){
+                setTimeout(function () {
+                    alert('<c:out value="${err}"/>')
+                },100)
+            }
+
+        </script>
+    </c:if>
 </body>
 </html>

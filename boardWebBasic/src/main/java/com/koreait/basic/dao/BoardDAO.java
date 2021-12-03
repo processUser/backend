@@ -1,6 +1,8 @@
 package com.koreait.basic.dao;
 
 import com.koreait.basic.DbUtils;
+import com.koreait.basic.Utils;
+import com.koreait.basic.board.model.BoardDTO;
 import com.koreait.basic.board.model.BoardEntity;
 import com.koreait.basic.board.model.BoardVO;
 
@@ -93,5 +95,96 @@ public class BoardDAO {
             DbUtils.close(con, ps);
         }
         return list;
+    }
+    public static BoardVO selBoardDetail(BoardDTO param){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select A.title, A.ctnt, A.hit, A.writer, B.nm as writerNm, A.rdt from t_board A inner join t_user B on A.writer = B.iuser where A.iboard = ?";
+
+        try{
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                String title = rs.getString("title");
+                String ctnt = rs.getString("ctnt");
+                int hit = rs.getInt("hit");
+                int writer = rs.getInt("writer");
+                String rdt = rs.getString("rdt");
+                String writerNm = rs.getString("writerNm");
+                BoardVO vo = BoardVO.builder().iboard(param.getIboard()).title(title).ctnt(ctnt).writer(writer).hit(hit).rdt(rdt).writerNm(writerNm).build();
+                return vo;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con, ps, rs);
+        }
+        return null;
+    }
+
+    public static int updBoard(BoardEntity entity){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "update t_board set title = ?, ctnt = ?, mdt = now() where iboard = ? and writer = ?;";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, entity.getTitle());
+            ps.setString(2, entity.getCtnt());
+            ps.setInt(3, entity.getIboard());
+            ps.setInt(4, entity.getWriter());
+            return ps.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
+
+    //로그인 한 사람이 pk 값과 data에 들어있는 writer값이 다르거나,
+    //로그인이 안 되어 있으면 hit값을 올려주기
+    public static void updBoardHitUp(BoardDTO param){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "update t_board set hit = hit + 1 where iboard = ?;";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            ps.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con, ps);
+        }
+    }
+
+    public static int delBoard(BoardEntity entity){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "delete from t_board where iboard = ? and writer = ?";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, entity.getIboard());
+            ps.setInt(2, entity.getWriter());
+            return ps.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
     }
 }
