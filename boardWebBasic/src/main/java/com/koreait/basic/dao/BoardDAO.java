@@ -64,6 +64,14 @@ public class BoardDAO {
         }
         return 0;
     }
+    //
+    public static int getMaxPageNum() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "select from t_board;";
+
+        return 0;
+    }
 
     public static List<BoardVO> selBoardList() {
         List<BoardVO> list = new ArrayList<>();
