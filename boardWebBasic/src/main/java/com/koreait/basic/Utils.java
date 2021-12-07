@@ -19,9 +19,15 @@ public class Utils {
         req.getRequestDispatcher("/WEB-INF/view/"+jsp+".jsp").forward(req, res);
     }
 
+
     public static int getParameterInt(HttpServletRequest req, String key){
+        return getParameterInt(req, key, 0);
+    }
+
+    public static int getParameterInt(HttpServletRequest req, String key,int defval){
         String val = req.getParameter(key);
-        return parseStringToInt(val, 0);
+        return parseStringToInt(val, defval);
+
     }
 
     public static int parseStringToInt(String val, int defval){

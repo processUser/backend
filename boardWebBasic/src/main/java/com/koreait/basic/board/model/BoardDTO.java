@@ -10,4 +10,8 @@ public class BoardDTO {
     private int page; // 몇번째 패이지 인지
     private int startIdx;
     private int rowCnt; // rowCnt: 5,  16개 값이 있다면 4페이지가 나와야한다.
+
+    private int searchType;
+    private String searchText;
+
 }

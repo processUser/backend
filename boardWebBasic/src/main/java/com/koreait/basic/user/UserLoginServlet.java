@@ -37,7 +37,7 @@ public class UserLoginServlet extends HttpServlet {
 
                 //이동
                 res.sendRedirect("/board/list");
-                break;
+                return;
             case 0:
                 err = "로그인 실패하였습니다.";
                 break;

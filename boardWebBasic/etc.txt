@@ -1,0 +1,12 @@
+sql문 순서 
+select
+from
+inner join
+on
+inner join
+on
+where
+group by
+having
+order by
+limit
