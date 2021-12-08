@@ -44,7 +44,9 @@ public class BoardRegModServlet extends HttpServlet {
 
         int result = 0;
         String title = req.getParameter("title");
+        title = title.replace("<", "&lt;").replace(">", "&gt;");
         String ctnt = req.getParameter("ctnt");
+        ctnt = ctnt.replace("<", "&lt;").replace(">", "&gt;");
 
         BoardEntity entity = new BoardEntity();
         entity.setTitle(title);

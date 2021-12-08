@@ -2,7 +2,7 @@
 <div>
     <form action="/user/login" method="post" id="frm">
         <input type="text" name="uid" placeholder="id" value="aaaaa">
-        <input type="password" name="upw" placeholder="password" value="12345">
+        <input type="password" name="upw" placeholder="password" value="aaaaa">
         <div>
             <input type="submit" value="login">
         </div>

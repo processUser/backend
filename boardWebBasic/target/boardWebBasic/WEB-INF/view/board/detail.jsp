@@ -21,4 +21,30 @@
         </div>
         <div><c:out value="${data.ctnt}"/></div>
     </div>
+<%--    댓글--%>
+    <div>---- 댓글 ----</div>
+    <ul>
+        <c:forEach var="list" items="${requestScope.cmtList}">
+        <li>
+            <span><c:out value="${list.writerNm}"/></span>
+            <span><c:out value="${list.rdt}"/></span>
+            <c:if test="${list.writer == sessionScope.loginUser.iuser}">
+                <a href="">수정</a>
+                <button onclick="isDelCmt(${data.iboard},${list.icmt});">삭제</button>
+            </c:if>
+            <div><c:out value="${list.ctnt}"/></div>
+        </li>
+        </c:forEach>
+    </ul>
+<%--댓글 검색--%>
+    <c:if test="${sessionScope.loginUser != null}">
+        <div>
+            <form action="/board/cmt/reg" method="post">
+                <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+                <input type="text" name="ctnt" placeholder="댓글 내용">
+                <input type="submit" value="등록">
+            </form>
+        </div>
+    </c:if>
 </div>
+<script src="/res/js/board/detail.js"></script>

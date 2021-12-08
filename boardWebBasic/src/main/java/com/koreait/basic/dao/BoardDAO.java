@@ -112,7 +112,11 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+<<<<<<< HEAD
+        String sql = "select A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm as writerNm from t_board A inner join t_user B on A.writer = B.iuser ";
+=======
         String sql = "select A.iboard, A.title, A.writer, a.hit, A.rdt, B.nm as writerNm from t_board A inner join t_user B on A.writer = B.iuser ";
+>>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
         sql += getSearchWhereString(param);
         sql += " order by A.iboard desc limit ?, ?";
 
