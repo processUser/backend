@@ -3,6 +3,7 @@ package com.koreait.basic.board.cmt;
 import com.koreait.basic.Utils;
 import com.koreait.basic.board.model.BoardCmtEntity;
 import com.koreait.basic.dao.BoardCmtDAO;
+import com.koreait.basic.dao.BoardDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,7 @@ public class BoardCmtRegServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int iboard = Utils.getParameterInt(req, "iboard");
+        int icmt = Utils.getParameterInt(req,"icmt");
         String ctnt = req.getParameter("ctnt");
         int writer = Utils.getloginUserPk(req);
 
@@ -28,8 +30,13 @@ public class BoardCmtRegServlet extends HttpServlet {
         param.setIboard(iboard);
         param.setCtnt(ctnt);
         param.setWriter(writer);
-
-        int result = BoardCmtDAO.insBoardCmt(param);
+        int result =0;
+        if(icmt == 0){
+            result = BoardCmtDAO.insBoardCmt(param);
+        } else {
+            param.setIcmt(icmt);
+            result = BoardCmtDAO.updBoardCmt(param);
+        }
 
         res.sendRedirect("/board/detail?nohits=1&iboard="+iboard);
     }

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" href="/res/css/board/detail.css">
 <%--글번호, 글제목, 글내용, 조회수, 작성자(이름), 등록일시--%>
 <div>
     <c:if test="${sessionScope.loginUser.iuser eq requestScope.data.writer}">
@@ -29,8 +29,8 @@
             <span><c:out value="${list.writerNm}"/></span>
             <span><c:out value="${list.rdt}"/></span>
             <c:if test="${list.writer == sessionScope.loginUser.iuser}">
-                <a href="">수정</a>
-                <button onclick="isDelCmt(${data.iboard},${list.icmt});">삭제</button>
+                <button onclick="openModForm(${list.icmt},'${list.ctnt}');">수정</button>
+                <button onclick="isDelCmt(${data.iboard}, ${list.icmt});">삭제</button>
             </c:if>
             <div><c:out value="${list.ctnt}"/></div>
         </li>
@@ -47,4 +47,17 @@
         </div>
     </c:if>
 </div>
-<script src="/res/js/board/detail.js"></script>
+<div class="cmtModContainer">
+    <div class="cmtmodBody">
+        <form action="/board/cmt/reg" method="post" id="cmtModFrm">
+            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+            <input type="hidden" name="icmt">
+            <div><input type="text" name="ctnt" placeholder="댓글 내용"></div>
+            <div>
+                <input type="submit" value="수정">
+                <input type="button" value="취소" id="btnCancel">
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/res/js/board/detail.js?v=1"></script>

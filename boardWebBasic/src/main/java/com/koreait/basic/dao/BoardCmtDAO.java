@@ -60,10 +60,29 @@ public class BoardCmtDAO {
         }
         return list;
     }
+    public static int updBoardCmt(BoardCmtEntity entity){
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "update t_board_cmt set ctnt = ? where icmt = ? and iboard = ? and writer = ?";
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, entity.getCtnt());
+            ps.setInt(2, entity.getIcmt());
+            ps.setInt(3, entity.getIboard());
+            ps.setInt(4, entity.getWriter());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
     public static int delBoardCmt(BoardCmtEntity entity){
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = " DELETE FROM t_board_cmt WHERE icmt = ? AND writer = ? ";
+        String sql = "DELETE FROM t_board_cmt WHERE icmt = ? AND writer = ? ";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);

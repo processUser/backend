@@ -17,20 +17,13 @@ public class BoardListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int searchType = Utils.getParameterInt(req,"searchType", 0);
         String searchText = req.getParameter("searchText");
-<<<<<<< HEAD
         int rowCnt = Utils.getParameterInt(req, "rowCnt", 5);
-=======
->>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
         int page = Utils.getParameterInt(req, "page",1);
 
         BoardDTO param = new BoardDTO();
         param.setSearchType(searchType);
         param.setSearchText(searchText);
-<<<<<<< HEAD
         param.setRowCnt(rowCnt);
-=======
-        param.setRowCnt(5);
->>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
         param.setPage(page);
         int startIdx = (param.getPage() - 1) * param.getRowCnt();
         param.setStartIdx(startIdx);

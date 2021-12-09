@@ -4,11 +4,7 @@
 <link rel="stylesheet" href="/res/css/board/list.css">
 <div>
     <div>
-<<<<<<< HEAD
         <form action="/board/list" method="get" id="searchFrm">
-=======
-        <form action="/board/list" method="get">
->>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
             <div>
                 <select name="searchType">
                     <option value="1" ${param.searchType == 1 ? 'selected' : ''}>제목</option>
@@ -17,7 +13,6 @@
                     <option value="4" ${param.searchType == 4 ? 'selected' : ''}>글쓴이</option>
                     <option value="5" ${param.searchType == 5 ? 'selected' : ''}>전체</option>
                 </select>
-<<<<<<< HEAD
                 <input type="search" name="searchText" value="${param.searchText}">
                 <input type="submit" value="검색">
 
@@ -28,9 +23,7 @@
                     </c:forEach>
                 </select>
             </div>
-=======
-                <input type="search" name="searchText" value="${param.searchText}"> <input type="submit" value="검색"></div>
->>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
+
         </form>
     </div>
 <c:choose>
@@ -69,11 +62,9 @@
         <c:set var="selectedPage" value="${param.page == null? 1 : param.page}" /> <%--setAttribute 하는 것--%>
             <%--        // jstl foreach 문을 items 사용하지 않고 작성--%>
         <c:forEach var="page" begin="1" end="${requestScope.maxPageNum}">
-<<<<<<< HEAD
+
             <div><a href="/board/list?page=${page}&searchText=${param.searchText}&searchType=${param.searchType}&rowCnt${param.rowCnt}"><span class="${selectedPage == page ? 'selected':''}">${page}</span></a></div>
-=======
-            <div><a href="/board/list?page=${page}&searchText=${param.searchText}&searchType=${param.searchType}"><span class="${selectedPage == page ? 'selected':''}">${page}</span></a></div>
->>>>>>> 78a52ea12068e9f7d9b92d74be52a5be628bd47c
+
         </c:forEach>
 
     </div>
