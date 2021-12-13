@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${requestScope.title}</title>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
     <link rel="stylesheet" href="/res/css/common.css">
 </head>
 <body>
@@ -13,6 +15,7 @@
         <div class="header">
             <ul class="topMenu">
                 <li><a href="/board/list">게시판</a></li>
+                <li><a href="/board/rank?type=1">조회수 Top 10</a></li>
             <c:if test="${sessionScope.loginUser != null}">
                 <li><a href="/board/regmod">글쓰기</a></li>
                 <li>${loginUser.nm}(${sessionScope.loginUser.uid})님 환영합니다.</li>

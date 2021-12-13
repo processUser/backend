@@ -14,4 +14,5 @@ public class BoardDTO {
     private int searchType;
     private String searchText;
 
+    private int loginUserPk;
 }

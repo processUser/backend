@@ -20,6 +20,17 @@
             </ul>
         </div>
         <div><c:out value="${data.ctnt}"/></div>
+    <c:if test="${sessionScope.loginUser != null}">
+        <c:choose>
+            <c:when test="${requestScope.isHeart == 1}">
+                <span class="material-icons-outlined">thumb_up</span>
+            </c:when>
+            <c:otherwise>
+                <span class="material-icons">thumb_up</span>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
+
     </div>
 <%--    댓글--%>
     <div>---- 댓글 ----</div>
