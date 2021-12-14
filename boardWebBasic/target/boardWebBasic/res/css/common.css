@@ -13,4 +13,8 @@ th, td{padding: 5px;}
 
 .body{padding: 20px;}
 
+.subContainer { height: 100%; display: grid; grid-template-columns: 120px 1fr;}
+.subContainer .subMenus {border-right: 1px solid #868484;}
+.subContainer .subBody {padding: 0 10px}
+
 .footer{background-color: #414141; color: #fff;}

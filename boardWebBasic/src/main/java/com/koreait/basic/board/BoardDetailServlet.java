@@ -33,10 +33,10 @@ public class BoardDetailServlet extends HttpServlet {
 
         int loginUserPk = Utils.getloginUserPk(req);
         if(loginUserPk > 0) { //로그인 되어 있으면 좋아요 했나? 안 했나? 정보 가져오기.
-            BoardHeartEntity bhParam = new BoardHeartEntity();
-            bhParam.setIuser(loginUserPk);
-            bhParam.setIboard(iboard);
-            req.setAttribute("isHeart", BoardHeartDAO.selIsHeart(bhParam));
+            BoardHeartEntity bhEntity = new BoardHeartEntity();
+            bhEntity.setIuser(loginUserPk);
+            bhEntity.setIboard(iboard);
+            req.setAttribute("isHeart", BoardHeartDAO.selIsHeart(bhEntity));
         }
         //로그인 한 사람이 pk 값과 data에 들어있는 writer값이 다르거나,
         //로그인이 안 되어 있으면 hit값을 올려주기

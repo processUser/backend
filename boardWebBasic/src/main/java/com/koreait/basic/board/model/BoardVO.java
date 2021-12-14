@@ -15,4 +15,5 @@ public class BoardVO { // vo는 Setter 가 빠져있는 것
     private String mdt;
 
     private String writerNm;
+    private int cnt;
 }

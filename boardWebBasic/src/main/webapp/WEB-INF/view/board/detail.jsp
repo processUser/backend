@@ -20,13 +20,14 @@
             </ul>
         </div>
         <div><c:out value="${data.ctnt}"/></div>
+<%--       좋아요--%>
     <c:if test="${sessionScope.loginUser != null}">
         <c:choose>
             <c:when test="${requestScope.isHeart == 1}">
-                <span class="material-icons-outlined">thumb_up</span>
+                <a href="/board/heart?proc=2&iboard=${requestScope.data.iboard}"><span class="material-icons">thumb_up</span></a>
             </c:when>
             <c:otherwise>
-                <span class="material-icons">thumb_up</span>
+                <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}"><span class="material-icons-outlined">thumb_up</span></a>
             </c:otherwise>
         </c:choose>
     </c:if>

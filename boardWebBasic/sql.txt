@@ -38,3 +38,35 @@ CREATE TABLE t_board_heart(
 	FOREIGN KEY(iuser) REFERENCES t_user(iuser),
 	FOREIGN KEY(iboard) REFERENCES t_board(iboard)
 );
+
+// 댓글수 top 10
+SELECT A.iboard, A.title, A.writer, A.rdt, B.nm AS writerNm, C.cnt
+FROM t_board A
+INNER JOIN t_user B
+ON A.writer = B.iuser
+INNER JOIN
+(
+/*서브쿼리*/
+SELECT iboard, COUNT(icmt) AS cnt
+FROM t_board_cmt
+GROUP BY iboard
+) C
+ON A.iboard = C.iboard
+ORDER BY C.cnt DESC
+LIMIT 10;
+
+// 좋아요 top 10
+SELECT A.iboard, A.title, A.writer, A.rdt, B.nm AS writerNm, C.hearts
+FROM t_board A
+INNER JOIN t_user B
+ON A.writer = B.iuser
+INNER JOIN
+(
+/*서브쿼리*/
+SELECT iboard, COUNT(iboard) AS hearts
+FROM t_board_heart
+GROUP BY iboard
+) C
+ON A.iboard = C.iboard
+ORDER BY C.hearts DESC
+LIMIT 10;
