@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder // 딱한번 값을 넣을 수 있다.
-public class BoardVO { // vo는 Setter 가 빠져있는 것
+public class BoardVO { // vo는 Setter 가 빠져있는 것  // select 후 값을 뿌릴때 이용한다.
     private int iboard;
     private String title;
     private String ctnt;
@@ -16,4 +16,5 @@ public class BoardVO { // vo는 Setter 가 빠져있는 것
 
     private String writerNm;
     private int cnt;
+    private String profileImg;
 }

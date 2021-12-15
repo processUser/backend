@@ -113,7 +113,7 @@ public class BoardDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm as writerNm " +
+        String sql = "select A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm as writerNm, B.profileImg " +
                 "from t_board A " +
                 "inner join t_user B on A.writer = B.iuser ";
         sql += getSearchWhereString(param);
@@ -133,7 +133,7 @@ public class BoardDAO {
                 int hit = rs.getInt("hit");
                 String rdt = rs.getString("rdt");
                 String writerNm = rs.getString("writerNm");
-                BoardVO vo = BoardVO.builder().iboard(iboard).title(title).writer(writer).hit(hit).rdt(rdt).writerNm(writerNm).build();
+                BoardVO vo = BoardVO.builder().iboard(iboard).title(title).writer(writer).hit(hit).rdt(rdt).writerNm(writerNm).profileImg(rs.getString("profileImg")).build();
                 list.add(vo);
             }
 

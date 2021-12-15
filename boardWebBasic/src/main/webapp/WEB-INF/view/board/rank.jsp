@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" href="/res/css/board/list.css?ver=5">
 <h1>${requestScope.title}</h1>
 <c:choose>
     <c:when test="${fn:length(requestScope.list) == 0}">
@@ -20,14 +21,7 @@
                     <tr>
                         <th>no</th>
                         <th>title</th>
-                        <c:choose>
-                            <c:when test="${param.type eq 1}">
-                                <th>hit</th>
-                            </c:when>
-                            <c:otherwise>
-                                <th>count</th>
-                            </c:otherwise>
-                        </c:choose>
+                        <th>${param.type == 1 ? 'hit' : 'count'}</th>
                         <th>writer</th>
                         <th>rdt</th>
                     </tr>
@@ -45,14 +39,7 @@
                         <tr class="record" onclick="moveToDetail(${item.iboard});">
                             <td>${item.iboard}</td>
                             <td>${eachTitle}</td>
-                            <c:choose>
-                                <c:when test="${param.type eq 1}">
-                                    <td>${item.hit}</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${item.cnt}</td>
-                                </c:otherwise>
-                            </c:choose>
+                            <td>${item.cnt}</td>
                             <td>${eachWriterNm}</td>
                             <td>${item.rdt}</td>
                         </tr>
@@ -62,3 +49,4 @@
         </div>
     </c:otherwise>
 </c:choose>
+<script src="/res/js/board/list.js?ver=3"></script>
