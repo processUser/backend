@@ -14,7 +14,8 @@ public class BoardVO { // vo는 Setter 가 빠져있는 것  // select 후 값�
     private String rdt;
     private String mdt;
 
-    private String writerNm;
     private int cnt;
+
+    private String writerNm;
     private String profileImg;
 }

@@ -49,7 +49,7 @@
                 <c:set var="eachWriterNm" value="${fn:replace(eachWriterNm, param.searchText, '<mark>'+=param.searchText+='</mark>')}" />
             </c:if>
 
-            <c:set var="pImg" value="defaultProfile.png"/>
+            <c:set var="pImg" value="DefaultAccountTile.png"/>
             <c:if test="${item.profileImg != null}">
                 <c:set var="pImg" value="profile/${item.writer}/${item.profileImg}"/>
             </c:if>

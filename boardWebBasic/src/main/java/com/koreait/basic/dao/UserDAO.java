@@ -74,6 +74,40 @@ public class UserDAO {
         }
         return new LoginResult(result, loginUser);
     }
+    //t_user 테이블에서 iuser or uid 유저 정보르 가져올 수 있는 메소드
+    public static UserEntity selUser2(UserEntity entity){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM t_user WHERE ";
+
+        if(entity.getIuser() > 0){
+            sql += "iuser = "+entity.getIuser();
+        } else {
+            sql += "uid = '"+entity.getUid()+"'";
+        }
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                UserEntity vo = new UserEntity();
+                vo.setIuser(rs.getInt("iuser"));
+                vo.setUid(rs.getString("uid"));
+                vo.setUpw(rs.getString("upw"));
+                vo.setNm(rs.getString("nm"));
+                vo.setGender(rs.getInt("gender"));
+                vo.setRdt(rs.getString("rdt"));
+                vo.setProfileImg(rs.getString("profileImg"));
+                return vo;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbUtils.close(con,ps,rs);
+        }
+        return null;
+    }
 
     public static UserEntity selUser(UserEntity entity) {
         Connection con = null;

@@ -34,12 +34,13 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int loginUserPk = Utils.getloginUserPk(req);
-        int maxSize = 10_485_760; //1024 * 1024 *10
+        int maxSize = 10_485_760; //1024 * 1024 *10 (10MB)
 //                            //저장 위치 : 서버 경로 + /res/img/profile/ + loginUserPk
 //        String targetPath = req.getContextPath() + "/res/img/profile/" + loginUserPk;
         ServletContext application = req.getServletContext();
         String targetPath = application.getRealPath("/res/img/profile/" + loginUserPk); // 저장위치
         //폴더 자동 생성
+        System.out.println(targetPath);
         File targetFolder = new File(targetPath);
         if(targetFolder.exists()){
             FileUtils.delFolderFiles(targetPath,false);
@@ -59,7 +60,10 @@ public class UserProfileServlet extends HttpServlet {
         entity.setProfileImg(changedFileNm);
 
         int result = UserDAO.updUser(entity);
-
+        if(result == 1){
+            UserEntity loginUser = Utils.getLoginUser(req);
+            loginUser.setProfileImg(changedFileNm);
+        }
         //doGet(req, res);
         res.sendRedirect("/user/profile");
     }

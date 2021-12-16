@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
-    <c:set var="pImg" value="def.png"/>
+    <c:set var="pImg" value="DefaultAccountTile.png"/>
     <c:if test="${requestScope.data.profileImg != null}">
         <c:set var="pImg" value="profile/${sessionScope.loginUser.iuser}/${requestScope.data.profileImg}"/>
     </c:if>
