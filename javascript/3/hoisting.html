@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        var 와 function 은 호이스팅 현상 발생
+        즉, 인접 스코프 시작 지점으로 옮겨준다.
+
+        var myName
+        function sum(){
+            console.log('sum')
+        }
+        sum()
+        myName =  '홍길동';
+        console.log(myName)
+        
+        */
+       /*
+        변수 선언, 함수 선언은 무조건 최상위.
+        변수명, 함수명은 같은 이름을 쓰지 않는다.
+       */
+        sum()
+        var myName =  '홍길동';
+        console.log(myName)
+        function sum(){
+            console.log('sum')
+        }
+    </script>
+</body>
+</html>

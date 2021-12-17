@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [2, 6, 10, 11, 22, 1, 7]
+        var sum = 0
+        arr.forEach(function(val){
+            if ( !(val%2) ){
+                sum += val
+            }
+        })
+        console.log('sum : ' + sum) // 짝수
+
+        var oddSum = 0
+        arr.forEach(function(val){
+            if (val%2){
+                oddSum += val
+            }
+        })
+        console.log('oddSum : ' + oddSum) // 홀수
+        var sum2 = 0
+        arr.forEach(function(v){
+            if(v<=10){
+                sum2 += v
+            }
+        })
+        console.log('sum2 : ' + sum2) // 10이하 값만 더한 결과값
+    </script>
+</body>
+</html>

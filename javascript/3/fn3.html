@@ -14,8 +14,25 @@
             console.log(arguments[1]);
             console.log(arguments[2]);
             console.log(arguments[3]);
+            
+            let sum = 0;
+            for(let i =0; i<arguments.length; i++){
+                sum += arguments[i]
+            }
+            console.log( 'sum : ' + sum);
+            sum = 0
+            // let arr = [...arguments]
+            // let arr = Array.from(arguments);
+            // let arr = Array.prototype.slice.call(arguments);
+            let arr = [].slice.call(arguments);
+            arr.forEach(element => {
+                sum += element
+            });
+            console.log( 'forEach sum : ' + sum);
+
         }
         sum(10, 20, 30)
+        sum(100, 200, 300, 400, 500)
     </script>
 </body>
 </html>
