@@ -25,6 +25,25 @@
             }
         }   
         console.log(result.join(', ')) 
+        /*
+        function chk() {
+            for(let i =0; i<list.length; i++){
+                if(fm.dog[i].checked){
+                    console.log(fm.dog[i].value)
+                }
+            }
+        }
+        */
+        function chk() {
+            let checkedList = []
+            let checkboxList = fm.querySelectorAll('input[type=checkbox][name=dog]')
+            for(let i =0; i<list.length; i++){
+                if(fm.dog[i].checked){
+                    checkedList.push(checkboxList[i].value)
+                }
+            }
+            console.log(checkedList.join(', '))
+        }
     </script>
 </body>
 </html>

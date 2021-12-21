@@ -3,6 +3,7 @@ package com.koreait.basic.board.cmt;
 import com.google.gson.Gson;
 import com.koreait.basic.Utils;
 import com.koreait.basic.board.model.BoardCmtDTO;
+import com.koreait.basic.board.model.BoardCmtEntity;
 import com.koreait.basic.board.model.BoardCmtVO;
 import com.koreait.basic.dao.BoardCmtDAO;
 
@@ -26,11 +27,11 @@ public class BoardCmtServlet extends HttpServlet {
 
         List<BoardCmtVO> list = BoardCmtDAO.selBoardCmtList(cmtParam);
 
-        Gson gson = new Gson();
+        Gson gson = new Gson(); // Object 를 Json으로 바꾸기 위해 Gson객체 생성
 
         res.setCharacterEncoding("UTF-8");
         res.setContentType("application/json");
-        PrintWriter out = res.getWriter();
+        PrintWriter out = res.getWriter(); // 응답하는
         out.print(gson.toJson(list));
         out.flush();
     }
@@ -38,5 +39,22 @@ public class BoardCmtServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //등록(C), 수정(U), 삭제(D)
+        String proc = req.getParameter("proc");
+        System.out.println("proc : " + proc);
+        String json = Utils.getJson(req);
+        Gson gson = new Gson();
+        System.out.println("json : " + json);
+        BoardCmtEntity entity = gson.fromJson(json, BoardCmtEntity.class);
+        entity.setWriter(Utils.getloginUserPk(req));
+
+        int result = 0;
+        switch(proc) {
+            case "upd":
+                result = BoardCmtDAO.updBoardCmt(entity); // writer, icmt, ctnt
+                break;
+        }
+        res.setContentType("application/json");
+        PrintWriter out = res.getWriter();
+        out.print(String.format("{\"result\": %d}", result));
     }
 }

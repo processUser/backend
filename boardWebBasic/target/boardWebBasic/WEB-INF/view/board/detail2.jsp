@@ -35,7 +35,7 @@
     </div>
 <%--    댓글--%>
     <div>---- 댓글 ----</div>
-    <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"></div>
+    <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}" data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
 <%--댓글 검색--%>
     <c:if test="${sessionScope.loginUser != null}">
         <div>
@@ -49,8 +49,7 @@
 </div>
 <div class="cmtModContainer">
     <div class="cmtmodBody">
-        <form action="/board/cmt/reg" method="post" id="cmtModFrm">
-            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+        <form id="cmtModFrm" onsubmit="return false;">
             <input type="hidden" name="icmt">
             <div><input type="text" name="ctnt" placeholder="댓글 내용"></div>
             <div>
@@ -60,4 +59,4 @@
         </form>
     </div>
 </div>
-<script src="/res/js/board/detail2.js"></script>
+<script src="/res/js/board/detail2.js?v=6"></script>

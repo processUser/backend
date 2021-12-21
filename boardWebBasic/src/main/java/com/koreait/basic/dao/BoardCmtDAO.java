@@ -63,14 +63,13 @@ public class BoardCmtDAO {
     public static int updBoardCmt(BoardCmtEntity entity){
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = "update t_board_cmt set ctnt = ? where icmt = ? and iboard = ? and writer = ?";
+        String sql = "update t_board_cmt set ctnt = ? where icmt = ? and writer = ?";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
             ps.setString(1, entity.getCtnt());
             ps.setInt(2, entity.getIcmt());
-            ps.setInt(3, entity.getIboard());
-            ps.setInt(4, entity.getWriter());
+            ps.setInt(3, entity.getWriter());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
