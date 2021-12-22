@@ -39,7 +39,7 @@
 <%--댓글 검색--%>
     <c:if test="${sessionScope.loginUser != null}">
         <div>
-            <form action="/board/cmt/reg" method="post">
+            <form id="cmtNewFrm">
                 <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
                 <input type="text" name="ctnt" placeholder="댓글 내용">
                 <input type="submit" value="등록">

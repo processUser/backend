@@ -1,5 +1,46 @@
 var cmtListContainerElem = document.querySelector('#cmtListContainer')
 
+//댓글 달기 기능
+var cmtNewFrmElem = document.querySelector('#cmtNewFrm')
+var newSubmitBtnElem = cmtNewFrmElem.querySelector('input[type=submit]')
+newSubmitBtnElem.addEventListener('click', function (e) {
+    e.preventDefault()
+    if(cmtNewFrmElem.ctnt.value.length === 0){
+        alert('댓글 내용을 작성해 주세요.')
+        return;
+    }
+    // iboard, ctnt
+    var param = {
+        iboard: cmtListContainerElem.dataset.iboard,
+        ctnt: cmtNewFrmElem.ctnt.value
+    }
+
+    var url = '/board/cmt?proc=ins'
+    fetch(url, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(param)
+    }).then(function (res) {
+        return res.json();
+    }).then(function (data) {
+        switch (data.result) {
+            case 0: // 수정 실패
+                alert('댓글 작성을 할수 없다.')
+                break;
+            case 1: // 수정 성공
+                cmtNewFrmElem.ctnt.value = ''
+                cmtListContainerElem.innerHTML = null;
+                getList()
+                break;
+        }
+    }).catch(function (err) {
+        console.error(err)
+        alert('댓글 달기 실패!')
+    })
+
+    console.log(param)
+})
+
 
 //(댓글 수정) 취소 버튼 클릭 이벤트 연결
 let cmtModContainerElem = document.querySelector('.cmtModContainer')
@@ -126,12 +167,49 @@ if(cmtListContainerElem) {
                 })
                 var btnDel = document.createElement('button');
                 btnDel.innerText='삭제';
-
+                btnDel.addEventListener('click', function(){
+                    if(confirm('삭제하겠습니까?')){
+                        //삭제 ajax 처리
+                        var param = {
+                            icmt: item.icmt
+                        }
+                        var url = '/board/cmt?proc=del'
+                        fetch(url, {
+                            'method': 'POST',
+                            'headers': { 'Content-Type': 'application/json' },
+                            'body': JSON.stringify(param)
+                        }).then(function (res){
+                            return res.json();
+                        }).then(function (data){
+                            switch (data.result) {
+                                case 0: // 수정 실패
+                                    alert('댓글 수정을 실패')
+                                    break;
+                                case 1: // 수정 성공
+                                    tr.remove();
+                                    break;
+                            }
+                        }).catch(function (err){
+                            console.log(err)
+                            alert('댓글 삭제 실패 했다.')
+                        })
+                    }
+                })
                 lastTd.appendChild(btnMod)
                 lastTd.appendChild(btnDel)
             }
         })
     }
+
+
+
+
+
+
+
+
+
+
 
     function displayCmt(data){
         var tableElem = document.createElement('table');
@@ -156,3 +234,5 @@ if(cmtListContainerElem) {
     }
     getList()
 }
+
+

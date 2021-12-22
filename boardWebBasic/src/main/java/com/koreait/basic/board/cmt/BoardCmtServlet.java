@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/board/cmt")
 public class BoardCmtServlet extends HttpServlet {
@@ -48,6 +50,8 @@ public class BoardCmtServlet extends HttpServlet {
         entity.setWriter(Utils.getloginUserPk(req));
 
         int result = 0;
+
+        /*
         switch(proc) {
             case "upd":
                 result = BoardCmtDAO.updBoardCmt(entity); // writer, icmt, ctnt
@@ -56,5 +60,27 @@ public class BoardCmtServlet extends HttpServlet {
         res.setContentType("application/json");
         PrintWriter out = res.getWriter();
         out.print(String.format("{\"result\": %d}", result));
+         */
+        switch(proc) {
+            case "upd":
+                result = BoardCmtDAO.updBoardCmt(entity); // writer, icmt, ctnt
+                break;
+            case "del":
+                result = BoardCmtDAO.delBoardCmt(entity); // writer, icmt
+                break;
+            case "ins":
+                result = BoardCmtDAO.insBoardCmt(entity); // result 값이 icmt값
+        }
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+        PrintWriter out = res.getWriter();
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("result", result);
+
+        String resultJson = gson.toJson(map);
+        System.out.println("resultJson : "+resultJson);
+        out.println(resultJson);
+
     }
 }
