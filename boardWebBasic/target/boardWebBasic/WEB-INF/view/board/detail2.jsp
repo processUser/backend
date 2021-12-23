@@ -59,4 +59,4 @@
         </form>
     </div>
 </div>
-<script src="/res/js/board/detail2.js?v=6"></script>
+<script src="/res/js/board/detail2.js?v=7"></script>

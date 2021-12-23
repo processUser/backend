@@ -17,18 +17,26 @@ public class BoardListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int searchType = Utils.getParameterInt(req,"searchType", 0);
         String searchText = req.getParameter("searchText");
-        int rowCnt = Utils.getParameterInt(req, "rowCnt", 5);
-        int page = Utils.getParameterInt(req, "page",1);
+
+        int rowCnt = Utils.getParameterInt(req, "rowCnt", 5); // 몇개씩 보여주는지
+        int page = Utils.getParameterInt(req, "page",1); // 선택한 페이지
 
         BoardDTO param = new BoardDTO();
         param.setSearchType(searchType);
         param.setSearchText(searchText);
+
+        // 페이징
         param.setRowCnt(rowCnt);
         param.setPage(page);
-        int startIdx = (param.getPage() - 1) * param.getRowCnt();
+        int startIdx = (param.getPage() - 1) * param.getRowCnt(); // 0 / 5 / 10
         param.setStartIdx(startIdx);
 
         int maxPageNum = BoardDAO.getMaxPageNum(param);
+
+        System.out.println("RowCnt"+param.getRowCnt());
+        System.out.println("Page"+param.getPage());
+        System.out.println("StartIdx"+param.getStartIdx());
+        System.out.println("maxPageNum"+maxPageNum);
 
 
         req.setAttribute("maxPageNum", maxPageNum);
